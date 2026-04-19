@@ -1,0 +1,13 @@
+defaults:
+  - base
+
+model:
+  name: pinn
+  ic_encoder:
+    channels: [32, 64, 64]
+    kernel: 5
+    latent_dim: 128
+  trunk:
+    hidden_dim: 128
+    n_layers: 6
+    activation: tanh

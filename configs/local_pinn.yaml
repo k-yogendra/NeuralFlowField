@@ -1,0 +1,40 @@
+# local_pinn.yaml — Reduced config for local GPU verification (GTX 1650, 4GB).
+# - 500 train trajectories instead of 9000
+# - batch_size=8, n_colloc=512 to keep physics-loss autodiff fast
+# - 10 epochs to verify convergence trend
+# Full training: use pinn.yaml on the server.
+defaults:
+  - base
+
+seed: 0
+
+dataset:
+  train_size: 500      # 500 train, 9500 val
+  batch_size: 8
+  n_points: 1024
+  n_colloc: 512        # fewer collocation points → faster u_xx autodiff
+  num_workers: 2
+
+train:
+  epochs: 10
+  lr: 1.0e-3
+  lr_final: 1.0e-5
+  lambda_data: 1.0
+  lambda_phys: 0.1
+  use_grad_balance: false
+  lbfgs_finetune_epochs: 0
+  val_max_batches: 10   # only 10 val batches per epoch
+
+logging:
+  ckpt_every: 5
+
+model:
+  name: pinn
+  ic_encoder:
+    channels: [32, 64, 64]
+    kernel: 5
+    latent_dim: 128
+  trunk:
+    hidden_dim: 128
+    n_layers: 6
+    activation: tanh

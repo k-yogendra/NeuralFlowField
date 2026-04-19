@@ -1,0 +1,6 @@
+defaults:
+  - ../pinf_fourier
+
+model:
+  encoding:
+    sigma: 10.0

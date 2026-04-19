@@ -1,0 +1,12 @@
+{
+  "acc/rel_l2": 0.6152249440550804,
+  "acc/rmse": 0.39947026371955874,
+  "acc/linf": 1.4553297638893128,
+  "acc/nrmse": 0.16702425554394723,
+  "phys/mass_conservation_max_drift": 0.006901729060336948,
+  "phys/periodicity_error": 0.0030224520829506218,
+  "shock/rel_l2_shock": 0.6345750764012337,
+  "shock/rel_l2_smooth": 0.616408209502697,
+  "efficiency/param_count": 139137,
+  "efficiency/latency_ms": 450.0251048011705
+}

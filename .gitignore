@@ -1,0 +1,68 @@
+# ── Python ────────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# ── Virtual environments ───────────────────────────────────────────────────────
+.venv/
+venv/
+env/
+.env
+.conda/
+
+# ── Jupyter ────────────────────────────────────────────────────────────────────
+.ipynb_checkpoints/
+*.ipynb
+
+# ── Dataset (large HDF5 files — stored outside repo or in Modal volume) ───────
+*.hdf5
+*.h5
+
+# ── Generated stats cache (re-computed automatically on first run) ─────────────
+*.stats.npz
+*.npz
+
+# ── Model checkpoints (too large for git — use Modal volume or DVC) ───────────
+experiments/
+*.pt
+*.pth
+*.ckpt
+
+# ── TensorBoard / W&B logs ────────────────────────────────────────────────────
+runs/
+wandb/
+lightning_logs/
+
+# ── Hydra outputs ─────────────────────────────────────────────────────────────
+outputs/
+multirun/
+.hydra/
+
+# ── Generated figures (re-produced by scripts/visualize.py) ───────────────────
+results/figures/
+
+# ── IDE / OS ──────────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# ── Misc ──────────────────────────────────────────────────────────────────────
+*.log
+*.tmp
+.pytest_cache/
+.coverage
+htmlcov/
+
+# ── Keep these result files (small, useful to track) ──────────────────────────
+!results/metrics/
+!results/tables/

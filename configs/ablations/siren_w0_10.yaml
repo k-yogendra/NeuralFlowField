@@ -1,0 +1,6 @@
+defaults:
+  - ../pinf_siren
+
+model:
+  encoding:
+    omega_0: 10.0

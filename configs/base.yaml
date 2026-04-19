@@ -1,0 +1,31 @@
+defaults:
+  - _self_
+
+seed: 0
+
+dataset:
+  h5_path: data/1D_Burgers_Sols_Nu0.01.hdf5
+  n_points: 4096        # sampled (x,t) per trajectory (data loss)
+  n_colloc: 2048        # collocation points per trajectory (physics loss)
+  train_size: 9000
+  batch_size: 16
+  num_workers: 4
+
+train:
+  epochs: 200
+  lr: 1.0e-3
+  lr_final: 1.0e-5
+  lambda_data: 1.0
+  lambda_phys: 0.1
+  use_grad_balance: false   # true = adaptive Wang et al. 2021 balancing
+  use_periodicity_loss: false
+  lambda_bc: 0.01
+  lbfgs_finetune_epochs: 0  # set to 20 to enable L-BFGS end-stage
+  grad_balance_alpha: 0.9   # EMA decay for adaptive balancing
+
+logging:
+  backend: tensorboard      # 'tensorboard' | 'wandb'
+  wandb_project: NeuralFlowField
+  log_every: 50             # steps between scalar logs
+  ckpt_every: 25            # epochs between regular checkpoints
+  out_dir: experiments/runs
