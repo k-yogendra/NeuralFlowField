@@ -48,8 +48,8 @@ def pick_representative_trajs(u_gt: np.ndarray, n: int = 3) -> list[int]:
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--pinn",   required=True)
-    parser.add_argument("--pinf_f", required=True, help="PINF-Fourier checkpoint")
-    parser.add_argument("--pinf_s", required=True, help="PINF-SIREN checkpoint")
+    parser.add_argument("--pinf_f", default=None, help="PINF-Fourier checkpoint")
+    parser.add_argument("--pinf_s", default=None, help="PINF-SIREN checkpoint")
     parser.add_argument("--n_traj", type=int, default=3)
     parser.add_argument("--h5_path", default="../data/1D_Burgers_Sols_Nu0.01.hdf5")
     args = parser.parse_args()
@@ -57,11 +57,11 @@ def main():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
     # Load models
-    model_paths = {
-        "PINN":        args.pinn,
-        "PINF-Fourier": args.pinf_f,
-        "PINF-SIREN":  args.pinf_s,
-    }
+    model_paths = {"PINN": args.pinn}
+    if args.pinf_f:
+        model_paths["PINF-Fourier"] = args.pinf_f
+    if args.pinf_s:
+        model_paths["PINF-SIREN"] = args.pinf_s
     models = {}
     for name, ckpt_path in model_paths.items():
         model, _ = load_model_from_ckpt(Path(ckpt_path), device)
